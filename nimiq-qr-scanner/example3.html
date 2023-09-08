@@ -75,6 +75,10 @@
       }
     );
 
+    scanner.setInversionMode("both");
+
+    scanner.start();
+
     QrScanner.listCameras(true).then((cameras) => {
       let listCam = "";
       cameras.forEach((camera) => {
@@ -92,9 +96,5 @@
     QrScanner.hasCamera().then(
       (hasCamera) => (camHasCamera.textContent = hasCamera)
     );
-
-    scanner.setInversionMode("both");
-
-    scanner.start();
   </script>
 </html>
