@@ -1,4 +1,4 @@
-# qrcode
+# [qrcode](https://github.com/lamngockhuong/qrcode)
 QR Code example
 
 Show: [Live demo](https://me.ngockhuong.com/qrcode)
@@ -35,4 +35,4 @@ Show: [Live demo](https://me.ngockhuong.com/qrcode)
 
 ### [Nimiq-qr-scanner](https://github.com/nimiq/qr-scanner):
 
-- [Example 1](/html5-qrcode/example1.html)
+- [Example 1](/nimiq-qr-scanner/example1.html)
