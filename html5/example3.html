@@ -25,6 +25,7 @@ Result Obj!</textarea
           }
         }
         docReady(function () {
+          const html5QrCode = new Html5Qrcode("qr-reader");
           var lastMessage;
 
           function onScanSuccess(decodedText, decodedResult) {
@@ -33,7 +34,7 @@ Result Obj!</textarea
               printScanResult(decodedText, decodedResult);
             }
 
-            html5QrcodeScanner.clear();
+            html5QrCode.clear();
           }
 
           function printScanResult(decodedText, decodedResult) {
@@ -45,7 +46,6 @@ Result Obj!</textarea
             resultObjSection.innerText = `${JSON.stringify(decodedResult, null, 2)}`;
           }
 
-          const html5QrCode = new Html5Qrcode("qr-reader");
           const config = { fps: 10, qrbox: 250 };
           // Select front camera or fail with `OverconstrainedError`.
           // html5QrCode.start({ facingMode: { exact: "environment"} }, config, onScanSuccess);
