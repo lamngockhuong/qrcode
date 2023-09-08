@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <title>QRCode Demo - Html5 Example 1</title>
+    <script src="../html5-qrcode.min.js" type="text/javascript"></script>
+  </head>
+
+  <body>
+    <div style="width: 500px" id="qr-reader"></div>
+    <div id="qr-reader-results"></div>
+  </body>
+  <script>
+    function docReady(fn) {
+      // see if DOM is already available
+      if (
+        document.readyState === "complete" ||
+        document.readyState === "interactive"
+      ) {
+        // call on next available tick
+        setTimeout(fn, 1);
+      } else {
+        document.addEventListener("DOMContentLoaded", fn);
+      }
+    }
+    docReady(function () {
+      var lastMessage;
+
+      function onScanSuccess(decodedText, decodedResult) {
+        if (lastMessage !== decodedText) {
+          lastMessage = decodedText;
+          printScanResult(decodedText, decodedResult);
+        }
+      }
+
+      function printScanResult(decodedText, decodedResult) {
+        let resultSection = document.getElementById('qr-reader-results');
+        resultSection.innerText = `${decodedText}`;
+        console.log(`Code matched = ${decodedText}`, decodedResult);
+      }
+
+      let html5QrcodeScanner = new Html5QrcodeScanner(
+        "qr-reader",
+        { fps: 10, qrbox: { width: 250, height: 250 } },
+        false
+      );
+
+      html5QrcodeScanner.render(onScanSuccess);
+    });
+  </script>
+</html>
