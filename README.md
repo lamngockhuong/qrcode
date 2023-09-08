@@ -9,3 +9,4 @@ Html5:
 - [Example 2](/html5/example2.html)
 - [Example 3](/html5/example3.html)
 - [Example 4](/html5/example4.html)
+- [Example 5](/html5/example5.html)
