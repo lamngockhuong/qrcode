@@ -8,3 +8,4 @@ Html5:
 - [Example 1](/html5/example1.html)
 - [Example 2](/html5/example2.html)
 - [Example 3](/html5/example3.html)
+- [Example 4](/html5/example4.html)
