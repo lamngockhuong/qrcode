@@ -35,4 +35,5 @@ Show: [Live demo](https://me.ngockhuong.com/qrcode)
 
 ### [Nimiq-qr-scanner](https://github.com/nimiq/qr-scanner):
 
-- [Example 1](/nimiq-qr-scanner/example1.html)
+- [Example 1](/nimiq-qr-scanner/example1.html): Full demo
+- [Example 2](/nimiq-qr-scanner/example2.html)
