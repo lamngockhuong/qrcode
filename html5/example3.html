@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <title>QRCode Demo - Html5 Example 1</title>
+    <script src="../html5-qrcode.min.js" type="text/javascript"></script>
+  </head>
+
+  <body>
+    <div style="width: 500px" id="qr-reader"></div>
+    <div id="qr-reader-results"></div>
+    <textarea style="width: 500px; height: 150px" id="qr-reader-obj-results">
+Result Obj!</textarea
+    >
+  </body>
+  <script>
+        function docReady(fn) {
+          // see if DOM is already available
+          if (
+            document.readyState === "complete" ||
+            document.readyState === "interactive"
+          ) {
+            // call on next available tick
+            setTimeout(fn, 1);
+          } else {
+            document.addEventListener("DOMContentLoaded", fn);
+          }
+        }
+        docReady(function () {
+          var lastMessage;
+
+          function onScanSuccess(decodedText, decodedResult) {
+            if (lastMessage !== decodedText) {
+              lastMessage = decodedText;
+              printScanResult(decodedText, decodedResult);
+            }
+
+            html5QrcodeScanner.clear();
+          }
+
+          function printScanResult(decodedText, decodedResult) {
+            let resultSection = document.getElementById('qr-reader-results');
+            let resultObjSection = document.getElementById('qr-reader-obj-results');
+
+            console.log(`Code matched = ${decodedText}`, decodedResult);
+            resultSection.innerText = `${decodedText}`;
+            resultObjSection.innerText = `${JSON.stringify(decodedResult, null, 2)}`;
+          }
+
+          const html5QrCode = new Html5Qrcode("qr-reader");
+          const config = { fps: 10, qrbox: 250 };
+          // Select front camera or fail with `OverconstrainedError`.
+          // html5QrCode.start({ facingMode: { exact: "environment"} }, config, onScanSuccess);
+          html5QrCode.start({ facingMode: { exact: "user"} }, config, onScanSuccess);
+        });
+  </script>
+</html>
