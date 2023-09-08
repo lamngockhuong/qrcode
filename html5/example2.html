@@ -7,6 +7,7 @@
   <body>
     <div style="width: 500px" id="qr-reader"></div>
     <div id="qr-reader-results"></div>
+    <textarea  style="width: 500px;height: 150px;" id="qr-reader-obj-results">Result Obj!</textarea>
   </body>
   <script>
     function docReady(fn) {
@@ -33,8 +34,11 @@
 
       function printScanResult(decodedText, decodedResult) {
         let resultSection = document.getElementById('qr-reader-results');
-        resultSection.innerText = `${decodedText}`;
+        let resultObjSection = document.getElementById('qr-reader-obj-results');
+
         console.log(`Code matched = ${decodedText}`, decodedResult);
+        resultSection.innerText = `${decodedText}`;
+        resultObjSection.innerText = `${JSON.stringify(decodedResult, null, 2)}`;
       }
 
       let html5QrcodeScanner = new Html5QrcodeScanner(
