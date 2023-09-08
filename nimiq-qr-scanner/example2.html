@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>QR Scanner Demo 2</title>
+  </head>
+  <body>
+    <h1>Scan from WebCam:</h1>
+    <div id="video-container">
+      <video id="qr-video"></video>
+    </div>
+    <div>
+      <b>Device has camera: </b>
+      <span id="cam-has-camera"></span>
+      <br />
+      <b>Camera list: </b>
+      <p id="cam-list"></p>
+      <b>Detected QR code: </b>
+      <span id="cam-qr-result">None</span>
+      <br />
+      <b>Last detected at: </b>
+      <span id="cam-qr-result-timestamp"></span>
+      <br />
+    </div>
+  </body>
+  <!--<script src="../qr-scanner.umd.min.js"></script>-->
+  <!--<script src="../qr-scanner.legacy.min.js"></script>-->
+  <script type="module">
+    import QrScanner from "./qr-scanner.min.js";
+
+    const video = document.getElementById("qr-video");
+    const camList = document.getElementById("cam-list");
+    const camHasCamera = document.getElementById("cam-has-camera");
+    const camQrResult = document.getElementById("cam-qr-result");
+    const camQrResultTimestamp = document.getElementById(
+      "cam-qr-result-timestamp"
+    );
+
+    function setResult(label, result) {
+      console.log(result.data);
+      label.textContent = result.data;
+      camQrResultTimestamp.textContent = new Date().toString();
+      label.style.color = "teal";
+      clearTimeout(label.highlightTimeout);
+      label.highlightTimeout = setTimeout(
+        () => (label.style.color = "inherit"),
+        100
+      );
+    }
+
+    const scanner = new QrScanner(
+      video,
+      (result) => setResult(camQrResult, result),
+      {
+        onDecodeError: (error) => {
+          camQrResult.textContent = error;
+          camQrResult.style.color = "inherit";
+        },
+        highlightScanRegion: true,
+        highlightCodeOutline: true,
+      }
+    );
+
+    QrScanner.listCameras(true).then((cameras) => {
+      let listCam = "";
+      cameras.forEach((camera) => {
+        let camTxt = `<span>+ <b>Id:</b> ${camera.id} - <b>Label:</b> ${camera.label}</span><br />`;
+        listCam += camTxt;
+      });
+
+      if (listCam === "") {
+        listCam = "No camera!<br/>";
+      }
+
+      camList.innerHTML = listCam;
+    });
+
+    QrScanner.hasCamera().then(
+      (hasCamera) => (camHasCamera.textContent = hasCamera)
+    );
+
+    scanner.start();
+  </script>
+</html>
