@@ -35,6 +35,15 @@ Show: [Live demo](https://me.ngockhuong.com/qrcode)
 
 ### [Nimiq-qr-scanner](https://github.com/nimiq/qr-scanner):
 
-- [Example 1](/nimiq-qr-scanner/example1.html): Full demo
-- [Example 2](/nimiq-qr-scanner/example2.html)
+- [Example 1](/nimiq-qr-scanner/example1.html): Full setting
+
+- [Example 2](/nimiq-qr-scanner/example2.html):
+    - List cameras
+    - hasCamera
+    - setInversionMode = original
+
 - [Example 3](/nimiq-qr-scanner/example3.html)
+    - List cameras
+    - hasCamera
+    - setInversionMode = both
+    - Custom QR box style
