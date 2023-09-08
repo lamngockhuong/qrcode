@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>QR Scanner Demo 2</title>
+    <title>QR Scanner Demo 3</title>
     <style>
       div {
         margin-bottom: 16px;
@@ -77,20 +77,20 @@
 
     scanner.setInversionMode("both");
 
-    scanner.start();
+    scanner.start().then(() => {
+      QrScanner.listCameras(true).then((cameras) => {
+        let listCam = "";
+        cameras.forEach((camera) => {
+          let camTxt = `<span>+ <b>Id:</b> ${camera.id} - <b>Label:</b> ${camera.label}</span><br />`;
+          listCam += camTxt;
+        });
 
-    QrScanner.listCameras(true).then((cameras) => {
-      let listCam = "";
-      cameras.forEach((camera) => {
-        let camTxt = `<span>+ <b>Id:</b> ${camera.id} - <b>Label:</b> ${camera.label}</span><br />`;
-        listCam += camTxt;
+        if (listCam === "") {
+          listCam = "No camera!<br/>";
+        }
+
+        camList.innerHTML = listCam;
       });
-
-      if (listCam === "") {
-        listCam = "No camera!<br/>";
-      }
-
-      camList.innerHTML = listCam;
     });
 
     QrScanner.hasCamera().then(
