@@ -70,20 +70,20 @@
       }
     );
 
-    scanner.start();
+    scanner.start().then(() => {
+      QrScanner.listCameras(true).then((cameras) => {
+        let listCam = "";
+        cameras.forEach((camera) => {
+          let camTxt = `<span>+ <b>Id:</b> ${camera.id} - <b>Label:</b> ${camera.label}</span><br />`;
+          listCam += camTxt;
+        });
 
-    QrScanner.listCameras(true).then((cameras) => {
-      let listCam = "";
-      cameras.forEach((camera) => {
-        let camTxt = `<span>+ <b>Id:</b> ${camera.id} - <b>Label:</b> ${camera.label}</span><br />`;
-        listCam += camTxt;
+        if (listCam === "") {
+          listCam = "No camera!<br/>";
+        }
+
+        camList.innerHTML = listCam;
       });
-
-      if (listCam === "") {
-        listCam = "No camera!<br/>";
-      }
-
-      camList.innerHTML = listCam;
     });
 
     QrScanner.hasCamera().then(
