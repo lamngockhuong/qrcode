@@ -11,6 +11,11 @@
       #video-container {
         line-height: 0;
       }
+
+      #video-container .scan-region-highlight-svg,
+      #video-container .code-outline-highlight {
+        stroke: #64a2f3 !important;
+      }
     </style>
   </head>
   <body>
@@ -87,6 +92,8 @@
     QrScanner.hasCamera().then(
       (hasCamera) => (camHasCamera.textContent = hasCamera)
     );
+
+    scanner.setInversionMode(inversionMode);
 
     scanner.start();
   </script>

@@ -37,3 +37,4 @@ Show: [Live demo](https://me.ngockhuong.com/qrcode)
 
 - [Example 1](/nimiq-qr-scanner/example1.html): Full demo
 - [Example 2](/nimiq-qr-scanner/example2.html)
+- [Example 3](/nimiq-qr-scanner/example3.html)
